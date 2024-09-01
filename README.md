@@ -16,9 +16,32 @@ Tools used
 * [Docker Desktop](https://www.docker.com/get-started)
 
 * [Nest CLI](https://docs.nestjs.com/first-steps)
+
+
 ```
 npm i -g @nestjs/cli
+npx prisma init
+npm install @prisma/client
 ```
+y una vez creada la base de datos con su info 
+```
+npx prisma db pull
+```
+y para generar el cliente (funcion helper que "sabrá" cómo luce la base de datos)
+```
+npx prisma generate
+```
+
+
+## Instrucciones para levantar el Backend
+
+1. Clonar el repo
+2. Instalar dependencias `npm install`
+3. Clonar `env.template` y renombrarlo a `.env`
+4. Completar las variables de entorno al archivo `.env`
+5. Levantar base de datos `docker compose up -d`
+6. Generar prisma client `npx prisma generate`
+7. Ejecutar proyecto con `npm run start:dev`
 
 
 # Opcional
@@ -57,9 +80,7 @@ Cambiar íconos de Angular por íconos de Nest -> Abrir: settings.json
 * [Backticks](https://marketplace.visualstudio.com/items?itemName=fractalbrew.backticks)
 
 
-## Comunidad de Discord
-Los invitamos a que se unan a nuestra comunidad de estudiantes en Discord y habla con personas que también estan aprendiendo igual que tu sobre diversas tecnologías.
+## Otros Recursos:
 
-<a href="https://discord.gg/KySgxtdKv6" target="blank">
-<img src="https://files.cdn.thinkific.com/cdn-cgi/image/width=1920,dpr=3,onerror=redirect/file_uploads/643563/images/c4f/52b/ecc/HOME-BANNER-COMUNIDAD-discord.jpg">
-</a>
+[Recetas de Prisma](https://docs.nestjs.com/recipes/prisma)
+
