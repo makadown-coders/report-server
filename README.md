@@ -84,3 +84,6 @@ Cambiar íconos de Angular por íconos de Nest -> Abrir: settings.json
 
 [Recetas de Prisma](https://docs.nestjs.com/recipes/prisma)
 
+[pdfMake](http://pdfmake.org/#/)
+
+[estilo de letra Roboto](https://fonts.google.com/?query=roboto)
