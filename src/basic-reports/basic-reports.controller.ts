@@ -14,4 +14,13 @@ export class BasicReportsController {
     pdfDoc.pipe(response);
     pdfDoc.end();
   }
+
+  @Get('constancia-empleo')
+  async constanciaEmpleo(@Res() response: Response) {
+    const pdfDoc = this.basicReportsService.constanciaEmpleo();
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Constancia de Empleo';
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
 }
