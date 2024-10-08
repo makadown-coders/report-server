@@ -1,5 +1,5 @@
-import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
-import { DateFormatter } from 'src/helpers';
+import { StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
+import { headerSection } from './sections/header.section';
 
 const estilos: StyleDictionary = {
     titulo: {
@@ -24,26 +24,11 @@ const estilos: StyleDictionary = {
     }
 };
 
-const logo: Content = {
-    image: 'src/assets/imssb-logo.jpg',
-    fit: [100, 100],
-    margin: [20, 20, 0, 10],
-}
-
 export const getConstanciaEmpleo = (): TDocumentDefinitions => {
     // const { name } = options;
     const docDefinition: TDocumentDefinitions = {
         styles: estilos,
-        header: {
-            columns: [
-                logo,
-                {
-                    text: DateFormatter.getDDMMMMYYYY(new Date()),
-                    alignment: 'right',
-                    margin: [20, 20],
-                }
-            ]
-        },
+        header:  headerSection({ showLogo: true, showDate: true }),
         content: [
             {
                 text: 'CONSTANCIA DE EMPLEO',
