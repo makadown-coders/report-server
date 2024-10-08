@@ -43,7 +43,7 @@ npx prisma generate
 3. Clonar `env.template` y renombrarlo a `.env`
 4. Completar las variables de entorno al archivo `.env`
 5. Levantar base de datos `docker compose up -d`
-6. Verificar en browser que este el server postgres (con alias postgres_database) en puerto 5432
+6. Verificar en browser que este el server (name) postgres, con Host name postgres_database en puerto 5432
 7. Generar prisma client `npx prisma generate`
 8. Ejecutar proyecto con `npm run start:dev`
 

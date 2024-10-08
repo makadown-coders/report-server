@@ -1,4 +1,5 @@
 import { Content, StyleDictionary, TDocumentDefinitions } from 'pdfmake/interfaces';
+import { DateFormatter } from 'src/helpers';
 
 const estilos: StyleDictionary = {
     titulo: {
@@ -37,9 +38,9 @@ export const getConstanciaEmpleo = (): TDocumentDefinitions => {
             columns: [
                 logo,
                 {
-                    text: `${new Date()}`,
+                    text: DateFormatter.getDDMMMMYYYY(new Date()),
                     alignment: 'right',
-                    margin: [0, 20, 0, 20],
+                    margin: [20, 20],
                 }
             ]
         },
