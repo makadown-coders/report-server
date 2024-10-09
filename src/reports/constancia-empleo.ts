@@ -24,7 +24,7 @@ const estilos: StyleDictionary = {
     }
 };
 
-export const getConstanciaEmpleo = (): TDocumentDefinitions => {
+export const getConstanciaEmpleoReport = (): TDocumentDefinitions => {
     // const { name } = options;
     const docDefinition: TDocumentDefinitions = {
         styles: estilos,

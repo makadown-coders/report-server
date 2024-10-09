@@ -2,7 +2,7 @@ import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { PrinterService } from 'src/printer/printer.service';
-import { getHelloWorldReport, getConstanciaEmpleo } from 'src/reports';
+import { getHelloWorldReport, getConstanciaEmpleoReport, getConstanciaEmpleoByIdReport } from 'src/reports';
 
 @Injectable()
 export class BasicReportsService extends PrismaClient implements OnModuleInit {
@@ -23,7 +23,7 @@ export class BasicReportsService extends PrismaClient implements OnModuleInit {
   }
 
   constanciaEmpleo() {
-    const docDefinition: TDocumentDefinitions = getConstanciaEmpleo();
+    const docDefinition: TDocumentDefinitions = getConstanciaEmpleoReport();
     const doc = this.printer.createPdf(docDefinition);
     return doc;
   }
@@ -39,7 +39,16 @@ export class BasicReportsService extends PrismaClient implements OnModuleInit {
       throw new NotFoundException('Employee not found');
     }
 
-    const docDefinition: TDocumentDefinitions = getConstanciaEmpleo();
+    const docDefinition: TDocumentDefinitions = getConstanciaEmpleoByIdReport({
+      empleadorNombre: 'Jose Luis Acevedo Acevedo de la Peña',
+      empleadorPosicion: 'Jefe de Departamento de Personal',
+      empleadoNombre: employee.name,
+      empleadoPosicion: employee.position,
+      empleadoFechaInicio: employee.start_date,
+      empleadoHoras: employee.hours_per_day,
+      empleadoHorarioDeTrabajo: employee.work_schedule,
+      empleadorCompania: 'Servicios de Salud del Instituto Mexicano del Seguro Social para el Bienestar',
+    });
     const doc = this.printer.createPdf(docDefinition);
     return doc;
   }
