@@ -15,21 +15,43 @@ const logo: Content = {
 }
 
 export const headerSection = (options: HeaderOptions): Content => {
-    const { title, subtitle, showLogo = true, showDate = true} = options;
+    const { title, subtitle, showLogo = true, showDate = true } = options;
     const headerLogo: Content = showLogo ? logo : null;
     const headerDate: Content = showDate ? {
         text: DateFormatter.getDDMMMMYYYY(new Date()),
         alignment: 'right',
-        margin: [20, 20],
+        margin: [20, 40, 20, 20],
     } : null;
 
-    const headerTitle: Content = title
+    /*const headerTitle: Content = title
      ? {
         text: title,
         style: {
             bold: true
         },
-    }: null;
+    }: null;*/
+    let headerTitle = [];
+
+    // Agregar título si está definido
+    if (title) {
+        headerTitle.push({
+            text: title,
+            style: 'header',
+            margin: [20, 40, 0, 10],
+            alignment: 'center',
+            bold: true, // big font size
+            fontSize: 32,
+        });
+    }
+
+    // Agregar subtítulo si está definido
+    if (subtitle) {
+        headerTitle.push({
+            text: subtitle,
+            style: 'subheader',
+            alignment: 'center',
+        });
+    }
 
     return {
         columns: [

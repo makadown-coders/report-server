@@ -9,6 +9,12 @@ const fonts = {
     italics: './fonts/Roboto-Italic.ttf',
     bolditalics: './fonts/Roboto-MediumItalic.ttf',
   },
+  Geomanist: {
+    normal: './fonts/Geomanist-Regular.otf',
+    bold: './fonts/Geomanist-Bold.ttf',
+    italics: './fonts/Geomanist-Regular-Italic.otf',
+    bolditalics: './fonts/geomanist-medium.ttf',
+  },
 };
 
 @Injectable()
