@@ -1,6 +1,7 @@
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { headerSection } from "./sections/header.section";
 import { countries as Pais} from "@prisma/client";
+import { footerSection } from "./sections/footer.section";
 
 interface ReportOptions {
     title?: string;
@@ -14,6 +15,7 @@ export const getReportePaises = (options: ReportOptions): TDocumentDefinitions =
 
     const docDefinition: TDocumentDefinitions = {
         pageOrientation: 'landscape',
+        footer: footerSection({ mostrarNumeroPagina: true }),
         header: headerSection({
             showLogo: true,
             title: title ?? 'Reporte de paises',
