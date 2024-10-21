@@ -25,7 +25,7 @@ export const getReportePaises = (options: ReportOptions): TDocumentDefinitions =
         pageMargins: [40, 150, 40, 40],
         content: [
             {
-                layout: 'lightHorizontalLines', // optional
+                layout: 'customLayout01', //'lightHorizontalLines', // optional
                 table: {
                     // headers are automatically repeated if the table spans over multiple pages
                     // you can declare how many rows should be treated as headers
