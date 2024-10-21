@@ -1,17 +1,26 @@
 import { TDocumentDefinitions } from "pdfmake/interfaces";
 import { headerSection } from "./sections/header.section";
+import { countries as Pais} from "@prisma/client";
 
-export const getReportePaises = (): TDocumentDefinitions => {
+interface ReportOptions {
+    title?: string;
+    subtitle?: string;
+    paises: Pais[];
+}
+
+export const getReportePaises = (options: ReportOptions): TDocumentDefinitions => {
+
+    const { title, subtitle, paises } = options;
 
     const docDefinition: TDocumentDefinitions = {
         pageOrientation: 'landscape',
         header: headerSection({
             showLogo: true,
-            title: 'Reporte de paises',
-            subtitle: 'Estos son los paises',
+            title: title ?? 'Reporte de paises',
+            subtitle: subtitle ?? 'Estos son los paises',
             showDate: true
         }),
-        pageMargins: [40, 150, 40, 60],
+        pageMargins: [40, 150, 40, 40],
         content: [
             {
                 layout: 'lightHorizontalLines', // optional
@@ -19,19 +28,16 @@ export const getReportePaises = (): TDocumentDefinitions => {
                     // headers are automatically repeated if the table spans over multiple pages
                     // you can declare how many rows should be treated as headers
                     headerRows: 1,
-                    widths: ['*', 'auto', 100, '*'],
-
+                    widths: [50, 50, 50, '*', '*', '*'],
                     body: [
-                        ['First', 'Second', 'Third', 'The last one'],
-                        ['Value 1', 'Value 2', 'Value 3', 'Value 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],
-                        [{ text: 'Bold value', bold: true }, 'Val 2', 'Val 3', 'Val 4'],                        
+                        ['ID', 'ISO2', 'ISO3', 'Name', 'Continent', 'Local Name'],
+                        ...paises.map(pais => [
+                             pais.id.toString(),
+                             pais.iso2,
+                             pais.iso3,
+                            { text: `${pais.name}`, bold: true },
+                             pais.continent,
+                             pais.local_name])
                     ]
                 }
             },
