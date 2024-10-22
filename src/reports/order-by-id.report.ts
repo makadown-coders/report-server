@@ -22,10 +22,12 @@ export const orderByIdReport = (): TDocumentDefinitions => {
         header: logo,
         pageMargins: [40, 60, 40, 60],
         content: [
+            // Encabezado
             {
                 text: 'IMSS Bienestar',
                 style: 'header',
             },
+            // Direccion y demás info
             {
                 columns: [
                     {
@@ -36,6 +38,11 @@ export const orderByIdReport = (): TDocumentDefinitions => {
                         alignment: 'right',
                     }
                 ]
+            },
+            {
+                qr: 'https://www.imssbienestar.gob.mx/',
+                fit: 75,
+                alignment: 'right'
             }
         ],
     }
