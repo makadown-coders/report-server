@@ -41,4 +41,8 @@ export class BasicReportsController {
     pdfDoc.pipe(response);
     pdfDoc.end();
   }
+
+  /* TODO: Usando query parameters, 
+     pedir cual es el continente que se quiere filtrar,
+      y enviar esa informacion filtrada al reporte */
 }
