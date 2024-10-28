@@ -22,8 +22,53 @@ const generateChartImage = async () => {
     return Utils.chartJSToImage(chartConfig);
 }
 
+const generateDonut = async () => {
+    const DATA_COUNT = 5;
+    const NUMBER_CFG = {
+        count: DATA_COUNT,
+        min: 0,
+        max: 100
+        };
+
+    const myData = {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple'],
+        datasets: [
+            {
+                label: 'My First Dataset',
+                data: Utils.numbers(NUMBER_CFG),
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(153, 102, 255)'
+                ],
+                hoverOffset: 4
+            }
+        ]
+    };
+
+    const chartConfig = {
+        type: 'doughnut',  // Show a bar chart
+        data: myData,
+        options: {            
+            title: {
+                display: true,
+                text: 'Chart.js Doughnut Chart'
+            },
+        }
+    };
+
+    return Utils.chartJSToImage(chartConfig);
+}
+
 export const getBasicChartSvgReport = async (): Promise<TDocumentDefinitions> => {
-    const chart = await generateChartImage();
+    
+    /*const chart = await generateChartImage();
+    const donutChart = await generateDonut();*/
+    // invoco todas las promesas y espero a que todas terminen
+    const [chart, donutChart] = await Promise.all([generateChartImage(), generateDonut()]);
+    
     return {
         content: [
            /* {
@@ -34,7 +79,11 @@ export const getBasicChartSvgReport = async (): Promise<TDocumentDefinitions> =>
             {
                 image: chart,
                 width: 500,
-            }
+            },
+            {
+                image: donutChart,
+                width: 500,
+            },
         ]
     };
 };
