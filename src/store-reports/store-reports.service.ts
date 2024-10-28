@@ -2,10 +2,11 @@ import { Injectable, NotFoundException, OnModuleInit } from '@nestjs/common';
 import { PrismaClient } from '@prisma/client';
 import { TDocumentDefinitions } from 'pdfmake/interfaces';
 import { PrinterService } from 'src/printer/printer.service';
-import { getHelloWorldReport, orderByIdReport } from 'src/reports';
+import { orderByIdReport, getBasicChartSvgReport } from 'src/reports';
 
 @Injectable()
 export class StoreReportsService extends PrismaClient implements OnModuleInit {
+  
   async onModuleInit() {
     console.info('StoreReportsService onModuleInit connecting via Prisma...');
     await this.$connect();
@@ -46,6 +47,14 @@ WHERE
     }
     
     const docDefinition: TDocumentDefinitions = orderByIdReport({data: order as any});
+    const doc = this.printer.createPdf(docDefinition);
+    return doc;
+  }
+
+  async getSvgChart() {
+    const docDefinition: TDocumentDefinitions = await getBasicChartSvgReport(/*{
+      name: 'svg chart',
+    }*/);
     const doc = this.printer.createPdf(docDefinition);
     return doc;
   }
