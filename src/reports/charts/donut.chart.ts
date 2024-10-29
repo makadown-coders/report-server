@@ -20,6 +20,7 @@ export const generateDonutChart = async (options: DonutOptions): Promise<string>
             {
                 label: 'Set de datos 1',
                 data: options.entries.map((entry) => entry.value),
+                backgroundColor: Object.values(Utils.CHART_COLORS),
             },
         ],
     };
