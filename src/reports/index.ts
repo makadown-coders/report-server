@@ -6,3 +6,6 @@ export * from './order-by-id.report';
 export * from './basic-chart-svg.report';
 export * from './statistics.report';
 export * from './charts/donut.chart';
+export * from './charts/line.chart';
+export * from './charts/bar.chart';
+export * from './charts/bubble.chart';

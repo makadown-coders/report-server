@@ -76,6 +76,7 @@ export interface NumbersConfig {
   continuity?: number;
 }
 
+
 export function numbers(config: NumbersConfig = {}) {
   const cfg = config || {};
   const min = cfg.min ?? 0;
