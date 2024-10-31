@@ -9,3 +9,5 @@ export * from './charts/donut.chart';
 export * from './charts/line.chart';
 export * from './charts/bar.chart';
 export * from './charts/bubble.chart';
+export * from './community.report';
+export * from './custom-size.report';

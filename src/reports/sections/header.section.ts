@@ -37,10 +37,10 @@ export const headerSection = (options: HeaderOptions): Content => {
         headerTitle.push({
             text: title,
             style: 'header',
-            margin: [20, 40, 0, 10],
+            margin: [0, 40, 0, 0],
             alignment: 'center',
             bold: true, // big font size
-            fontSize: 32,
+            fontSize: 30,            
         });
     }
 
@@ -50,6 +50,7 @@ export const headerSection = (options: HeaderOptions): Content => {
             text: subtitle,
             style: 'subheader',
             alignment: 'center',
+            fontSize: 20,
         });
     }
 

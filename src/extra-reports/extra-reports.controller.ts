@@ -10,7 +10,35 @@ export class ExtraReportsController {
   getHtmlReport(@Res() response: Response) {
     const pdfDoc = this.extraReportsService.getHtmlReport();    
     response.setHeader('Content-Type', 'application/pdf');
-    pdfDoc.info.Title = 'Hello World!';
+    pdfDoc.info.Title = 'Reporte HTML';
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
+
+  @Get('community-report')
+  getCommunityReport(@Res() response: Response) {
+    const pdfDoc = this.extraReportsService.getCommunityReport();
+    // const pdfDoc = this.extraReportsService.getRemisionReport();
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Prueba IMSS Bienestar';
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
+
+  @Get('remision-report')
+  getRemisionReport(@Res() response: Response) {
+    const pdfDoc = this.extraReportsService.getRemisionReport();
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Prueba IMSS Bienestar';
+    pdfDoc.pipe(response);
+    pdfDoc.end();
+  }
+
+  @Get('custom-size')
+  getCustomSize(@Res() response: Response) {
+    const pdfDoc = this.extraReportsService.getCustomSize();
+    response.setHeader('Content-Type', 'application/pdf');
+    pdfDoc.info.Title = 'Prueba IMSS Bienestar';
     pdfDoc.pipe(response);
     pdfDoc.end();
   }
